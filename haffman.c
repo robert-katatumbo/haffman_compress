@@ -183,7 +183,7 @@ void build_haffman(struct tree *root, const int ch){
 
 while(RA < ch-1){
 
-        m = RA; // вервый минимальный элемент
+        m = RA; // Первый минимальный элемент
         if(root[m].count > root[RA+1].count){
             ++m;
         }
@@ -371,7 +371,7 @@ int main(const int argc, const char **argv){
             }
         
         }
-    }fputc(wr,fres); // назополненный байт, может быть мусор
+    }fputc(wr,fres); // незополненный байт, может быть мусор
 
     printf("created result.compress\n");
 
@@ -380,6 +380,7 @@ int main(const int argc, const char **argv){
     free_list(path);
     free(helper);
     free(root);
+    fclose(fres);
     fclose(f);
     
     }  else if(argv[1][1] == 'd') {                      
@@ -409,14 +410,13 @@ int main(const int argc, const char **argv){
     // Чтение алфавита
     for(i = 0; i < size; ++i){
     // Считывание символа
-        root[i].symb = fgetc(f);
-    
+        root[i].symb = fgetc(f);    
     // Считывание uint
         reader->x1 = fgetc(f);
         reader->x2 = fgetc(f);
         reader->x3 = fgetc(f);
         reader->x4 = fgetc(f);
-        root[i].count = *((unsigned int*)&reader->x1); // ебанутый..
+        root[i].count = *((unsigned int*)&reader->x1); //..
             
         root[ch+i].count = INT_MAX;
         root[ch+i].symb = -1;
